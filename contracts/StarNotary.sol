@@ -1,12 +1,17 @@
-pragma solidity >=0.4.24;
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
 //Importing openzeppelin-solidity ERC-721 implemented Standard
-import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
+// import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+// import "https://github.com/OpenZeppelin/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol";
+
 
 // StarNotary Contract declaration inheritance the ERC721 openzeppelin implementation
 contract StarNotary is ERC721 {
 
-    constructor() ERC721("Liam Token", "LIAM"){  }
+    constructor() ERC721("Bigheadphones","BHP"){
+    }
 
     // Star data
     struct Star {
@@ -67,13 +72,14 @@ contract StarNotary is ERC721 {
         address owner1 = ownerOf(_tokenId1);
         address owner2 = ownerOf(_tokenId2);
 
-        require(msg.sender == owner1 || msg.sender == owner2, "You must own one of the stars");
+        require(msg.sender == owner1 || msg.sender == owner2, "Sender must own one of the stars");
+        // setApprovalForAll(msg.sender, true);
 
         //2. You don't have to check for the price of the token (star)
         //3. Get the owner of the two tokens (ownerOf(_tokenId1), ownerOf(_tokenId1)
         //4. Use _transferFrom function to exchange the tokens.
-        transferFrom(owner1, owner2, _tokenId1);
-        transferFrom(owner2, owner1, _tokenId2);
+        _transfer(owner1, owner2, _tokenId1);
+        _transfer(owner2, owner1, _tokenId2);
     }
 
     // Implement Task 1 Transfer Stars
