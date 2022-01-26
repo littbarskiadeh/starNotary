@@ -5,6 +5,7 @@ build
 # production
 /build
 /node_modules
+.secret
 
 # misc
 .DS_Store
