@@ -6,6 +6,7 @@ build
 /build
 /node_modules
 .secret
+.env
 
 # misc
 .DS_Store
